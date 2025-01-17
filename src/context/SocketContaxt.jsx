@@ -15,9 +15,9 @@ export const SocketProvider = ({ children }) => {
     useEffect(() => {
         if (authUser) {
             const newSocket = io("https://chatapp-bljr.onrender.com", {
-                query: {
-                    userId: authUser.user.id,
-                },
+                 query: { userId: authUser.user.id },
+                withCredentials: true,  // Ensure cookies are sent with the request
+                transports: ["websocket"],
             });
             console.log(authUser.user.id);
 
